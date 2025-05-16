@@ -14,6 +14,7 @@ class AuthorizationController extends Controller
     {
         return view('auth.login');
     }
+    
 
     public function login(Request $request)
     {
@@ -34,7 +35,9 @@ class AuthorizationController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        $request->session()->flush();
+    return redirect('/');
+        
     }
 
     public function showRegisterForm()
@@ -56,8 +59,10 @@ class AuthorizationController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($user);
-
-        return redirect()->route('dashboard');
+         if ($user) {
+        return redirect()->route('login')->with('success', 'Registration successful!');
+    } else {
+        return back()->withErrors(['registration' => 'Registration failed.']);
     }
+}
 }

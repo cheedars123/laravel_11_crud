@@ -13,18 +13,16 @@ btn-primary btn-sm">&larr; Back</a>
  </div>
  </div>
  <div class="card-body">
- <form action="{{ route('products.store') }}"
-method="post">
+<form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
  @csrf
  <div class="mb-3 row">
  <label for="code" class="col-md-4 col-formlabel text-md-end text-start">Code</label>
  <div class="col-md-6">
  <input type="text" class="form-control 
-@error('code') is-invalid @enderror" id="code" name="code" value="{{ 
-old('code') }}">
+@error('code') is-invalid 
+@enderror" id="code" name="code" value="{{ old('code') }}">
  @error('code')
- <span class="text-danger">{{ $message 
-}}</span>
+ <span class="text-danger">{{ $message }}</span>
  @enderror
  </div>
  </div>
@@ -71,16 +69,25 @@ name="price" value="{{ old('price') }}">
 @error('description') is-invalid @enderror" id="description"
 name="description">{{ old('description') }}</textarea>
  @error('description')
- <span class="text-danger">{{ $message 
-}}</span>
+ <span class="text-danger">{{ $message }}</span>
  @enderror
  </div>
  </div>
 <div class="mb-3 row">
- <input type="submit" class="col-md-3 offsetmd-5 btn btn-primary" value="Add Product">
- </div>
- </form>
- </div>
+    <label for="image" class="col-md-4 colform-label text-md-end text-start">Product Image:</label>
+    <div class="col-md-6">
+        <input type="file" class="form-control
+         @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+        @error('image')
+                         <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>  
+</div>
+<div class="mb-3 row">
+    <div class="col-md-6 offset-md-3">
+        <input type="submit" class="btn btn-primary w-100" value="Add Product">
+    </div>
+</div>
  </div>
  </div> 
 </div>

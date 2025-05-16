@@ -12,6 +12,7 @@ min.css">
 href="https://cdn.jsdelivr.net/npm/bootstrapicons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body> 
+    
  <div class="container">
  <h3 class=" mt-3">Simple Laravel 11 CRUD Application 
 Tutorial</h3>
@@ -23,7 +24,12 @@ Return to Website: <a
 href="https://www.usjr.edu.ph/"><strong>University of San Jose -
 Recoletos</strong></a>
 </p>
- 
+ @if(Auth::check())
+    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-3 mb-3 float-end">Logout</button>
+    </form>
+@endif
  </div>
  </div>
  </div>

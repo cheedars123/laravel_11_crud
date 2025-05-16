@@ -111,9 +111,7 @@
         <h2>Create an Account</h2>
 
         <!-- Success message (example) -->
-        <div class="success">
-            Registration successful!
-        </div>
+       
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
